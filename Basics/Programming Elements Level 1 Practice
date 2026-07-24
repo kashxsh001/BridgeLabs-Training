@@ -1,0 +1,126 @@
+using System;
+class Assessment
+{
+    static void age()
+    {
+        int birthYear = 2000;
+        int currentYear = 2024;
+
+        int age = currentYear - birthYear;
+
+       Console.WriteLine("Harry's age in 2024 is " + age);
+    }
+    static void PCM_Marks()
+    {
+        int maths = 94;
+        int physics = 95;
+        int chemistry = 96;
+
+        double average = (maths + physics + chemistry) / 3.0;
+
+        Console.WriteLine("Sam's average mark in PCM is " + average);
+    }
+
+    static double KilometersToMiles(double km)
+    {
+        double miles = km * 1.6;
+        return miles;
+    }
+    static void Profit(int cp,int sp)
+    {
+        int profit = sp - cp;
+        double percent = profit / cp * 100;
+        Console.WriteLine($"The Cost Price is INR {cp} and Selling Price is INR {sp}\r\nThe Profit is INR {profit} and the Profit Percentage is {percent}");
+    }
+    static void PenDivision(int pen,int students)
+    {
+        int pen_distributed = pen / students;
+        int non_distributed = pen % students;
+        Console.WriteLine($"The Pen Per Student is {pen_distributed} and the remaining pen not distributed is {non_distributed}");
+    }
+
+    static void DiscountedFee()
+    {
+        int fee = int.Parse(Console.ReadLine()!);
+        int discountPercent = int.Parse(Console.ReadLine()!);
+
+        double discount = fee * discountPercent / 100.0;
+        double finalFee = fee - discount;
+
+        Console.WriteLine("The discount amount is INR " + discount +
+                " and final discounted fee is INR " + finalFee);
+    }
+
+    static void Volume()
+    {
+        double radius = 6378;
+        double pi = Math.PI;
+
+        double volumeKm = (4.0 / 3) * pi * Math.Pow(radius, 3);
+
+        double radiusMiles = radius * 0.621371;
+        double volumeMiles = (4.0 / 3) * pi * Math.Pow(radiusMiles, 3);
+
+        Console.WriteLine("The volume of earth in cubic kilometers is "
+                + volumeKm + " and cubic miles is " + volumeMiles);
+    }
+
+    static void CmToFeetAndInches()
+    {
+        double cm = double.Parse(Console.ReadLine()!);
+        double inches = cm / 2.54;
+        double feet = inches / 12;
+
+        Console.WriteLine("Your Height in cm is " + cm +
+                " while in feet is " + feet +
+                " and inches is " + inches);
+    }
+
+    static void Calculator()
+    {
+        int num1 = int.Parse(Console.ReadLine()!);
+        int num2 = int.Parse(Console.ReadLine()!);
+        int add = num1 + num2;
+        int sub = num1 - num2;
+        int mul = num1 * num2;
+        int div = num1 / num2;
+        Console.WriteLine($"The addition, subtraction, multiplication and division value of 2 numbers {num1} and {num2} is {add}, {sub}, {mul}, and {div}");
+    }
+
+    static void FeetToYardAndMiles(double feet)
+    {
+        double yards = feet / 3;
+        double miles = yards / 1760;
+
+        Console.WriteLine("The distance in feet is " + feet +
+                          ", in yards is " + yards +
+                          " and in miles is " + miles);
+    }
+
+    static int MaximumHandshakes(int students)
+    {
+        int handshakes = (students * (students - 1)) / 2;
+        return handshakes;
+    }
+
+    static void Main(String[] args)
+    {
+        age();
+        PCM_Marks();
+        double km = double.Parse(Console.ReadLine()!);
+        double miles= KilometersToMiles(km);
+        Console.WriteLine("The distance " + km + " km in miles is " + miles);
+        Profit(129,191);
+        PenDivision(14, 3);
+        DiscountedFee();
+        Volume();
+        CmToFeetAndInches();
+        Calculator();
+        double feet = Convert.ToDouble(Console.ReadLine()!);
+        FeetToYardAndMiles(feet);
+        int students = int.Parse(Console.ReadLine()!);
+        MaximumHandshakes(students);
+    }
+
+
+}
