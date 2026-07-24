@@ -1,1 +1,230 @@
+using System;
+using System.Runtime.CompilerServices;
+class Assesment
+{
+    static void CanVote(int[] ages)
+    {
+        for(int i = 0;i< ages.Length; i++)
+        {
+            int age = ages[i];
+            if (age < 0)
+            {
+                Console.WriteLine("Invalid age");
+            }
+            else if (age >= 18)
+            {
+                Console.WriteLine($"The student with the {age} can vote.");
+            }
+            else
+            {
+                Console.WriteLine($"The student with the {age} cannot vote.");
+            }
+        }
+        
+        
+    }
+
+    static void IsPositive(int[] numbers)
+    {
+        for(int i = 0; i < numbers.Length; i++)
+        {
+            int num = numbers[i];
+            if (num > 0)
+            {
+                if (num % 2 == 0)
+                {
+                    Console.WriteLine("Number is Positive and Even");
+                }
+                else
+                {
+                    Console.WriteLine("Number is Positive and Odd");
+                }
+            }
+            else if (num < 0)
+            {
+                Console.WriteLine("Negative");
+            }
+            else
+            {
+                Console.WriteLine("Zero");
+            }
+        }
+        int first = numbers[0];
+        int last = numbers[numbers.Length - 1];
+
+        if (first > last)
+        {
+            Console.WriteLine("First is greater");
+        }
+        else if(last > first)
+        {
+            Console.WriteLine("Last is greater");
+        }
+        else
+        {
+            Console.WriteLine("Both are Equal");
+        }
+
+    }
+
+    static int Sum(int[] numbers)
+    {
+        int sum = 0;
+        int index = 0;
+        while (index<numbers.Length)
+        {
+            int num = int.Parse(Console.ReadLine()!);
+            if (num <= 0 ) break;
+            numbers[index++] = num;
+        }
+        foreach(int num in numbers)
+        {
+            sum += num;
+        }
+
+        return sum;
+
+    }
+
+    static int[] Factors(int num,ref int index)
+    {
+        int[] factors = new int[10];
+        for(int i = 1; i <= num; i++)
+        {
+            if (num % i == 0)
+            {
+                factors[index++] = i;
+            }
+        }
+
+        return factors;
+
+    }
+
+    static double MeanHeight(double[] heights)
+    {
+        double sum = 0;
+
+        foreach(double num in heights)
+        {
+            sum += num;
+        }
+
+        return sum / heights.Length;
+    }
+
+    static string[] FizzBuzz(int num)
+    {
+        string[] arr = new string[num];
+        int index = 0;
+        if (num > 0)
+        {
+            for(int i = 0; i < num; i++)
+            {
+                if (i % 3 == 0 && i % 5 == 0)
+                {
+                    arr[index++] = "FizzBuzz";
+                }
+                else if (i % 5 == 0)
+                {
+                    arr[index++] = "Buzz";
+                }
+                else if(i%3==0)
+                {
+                    arr[index++] = "Fizz";
+                }
+                else
+                {
+                    arr[index++] = i.ToString();
+                }
+            }
+        }
+
+        return arr;
+    }
+    static void Main(String[] args)
+    {
+        //int[] ages = new int[10];
+        //for(int i = 0; i < 10; i++)
+        //{
+        //    ages[i] = int.Parse(Console.ReadLine()!);
+        //}
+        //CanVote(ages);
+
+        //int[] numbers = new int[5];
+        //for(int i = 0; i < 5; i++)
+        //{
+        //    numbers[i] = int.Parse(Console.ReadLine()!);
+        //}
+        //IsPositive(numbers);
+
+        //int[] numbers = new int[10];
+        //int sum = Sum(numbers);
+        //foreach(int num in numbers)
+        //{
+        //    Console.Write(num + " ");
+        //}
+        //Console.WriteLine("Sum of numbers are: " + sum);
+
+        //int size = int.Parse(Console.ReadLine()!);
+        //double[] heights = new double[size];
+        //for(int i = 0; i < size; i++)
+        //{
+        //    heights[i] = double.Parse(Console.ReadLine()!);
+        //}
+        //Console.WriteLine("Mean height is: " + MeanHeight(heights));
+
+        //int num = int.Parse(Console.ReadLine()!);
+        //int index = 0;
+        //int[] factors = Factors(num,ref index);
+        //for(int i = 0; i < index; i++)
+        //{
+        //    Console.Write(factors[i] + " ");
+        //}
+
+        //int row_size = int.Parse(Console.ReadLine()!);
+        //int col_size = int.Parse(Console.ReadLine()!);
+        //int[,] arr = new int[row_size, col_size];
+        //for(int row = 0; row < row_size; row++)
+        //{
+        //    for(int col = 0; col < col_size; col++)
+        //    {
+        //        arr[row, col] = int.Parse(Console.ReadLine()!);
+        //    }
+        //}
+
+        //for (int row = 0; row < row_size; row++)
+        //{
+        //    for (int col = 0; col < col_size; col++)
+        //    {
+        //        Console.Write(arr[row, col] + " ");
+        //    }
+        //    Console.WriteLine();
+        //}
+
+        //int[] array = new int[row_size * col_size];
+        //int index = 0;
+        //for (int row = 0; row < row_size; row++)
+        //{
+        //    for (int col = 0; col < col_size; col++)
+        //    {
+        //        array[index++] = arr[row, col];
+        //    }
+        //}
+
+        //foreach(int num in array)
+        //{
+        //    Console.Write(num + " ");
+        //}
+
+        int num = int.Parse(Console.ReadLine()!);
+        String[] arr = FizzBuzz(num);
+        foreach(String s in arr)
+        {
+            Console.Write(s + " ");
+        }
+
+
+    }
+}
 
