@@ -1,0 +1,55 @@
+using System;
+class Assessment
+{
+    static void CelsiusToFahrenheit()
+    {
+        double celsius = double.Parse(Console.ReadLine()!);
+        double fahrenheit = (celsius * 9.5) + 32;
+        Console.WriteLine("The " + celsius +
+            " Celsius is " + fahrenheit + " Fahrenheit");
+    }
+    static void TotalIncome(double sal,double bonus)
+    {
+        double income = sal + bonus;
+        Console.WriteLine("The salary is INR " + sal +
+            " and bonus is INR " + bonus +
+            ". Hence Total Income is INR " + income);
+    }
+    static void SwapNumbers(int num1,int num2)
+    {
+        num1 = num1 ^ num2;
+        num2 = num2 ^ num1;
+        num1 = num1 ^ num2;
+
+        Console.WriteLine("The swapped numbers are "
+            + num1 + " and " + num2);
+
+    }
+
+    static void SimpleInterst()
+    {
+        Console.Write("Enter principal: ");
+        double principal = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Enter rate: ");
+        double rate = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Enter time: ");
+        double time = Convert.ToDouble(Console.ReadLine());
+
+        double simpleInterest = (principal * rate * time) / 100;
+
+        Console.WriteLine("The Simple Interest is " + simpleInterest +
+            " for Principal " + principal +
+            ", Rate of Interest " + rate +
+            " and Time " + time);
+    }
+     static void PoundsToKilogram(double pounds)
+    {
+        double kg = pounds * 0.45;
+        Console.WriteLine("The weight of the person in pounds is "
+            + pounds + " and in kg is " + kg);
+
+    }
+
+}
