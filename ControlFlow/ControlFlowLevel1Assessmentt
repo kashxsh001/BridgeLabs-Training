@@ -1,0 +1,225 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Arrays_Assesment.ControlFlow
+{
+    internal class Level_
+    {
+        static void Main()
+        {
+           
+
+            //CheckDivisibleBy5();
+            //CheckSmallestNumber();
+            //SpringSeason();
+            //RocketCountdown();
+            //SumUntilZero();
+            //SumUntilNegative();
+            //NaturalNumberSum();
+            //EmployeeBonus();
+            //MultiplicationTable();
+        }
+
+
+        // 1. Check if number is divisible by 5
+        static void CheckDivisibleBy5()
+        {
+            Console.Write("Enter number: ");
+            int number = Convert.ToInt32(Console.ReadLine());
+
+            bool result = number % 5 == 0;
+
+            Console.WriteLine("Is the number " + number + " divisible by 5? " + result);
+        }
+
+
+        // 2. Check if first number is smallest among 3 numbers
+        static void CheckSmallestNumber()
+        {
+            Console.Write("Enter number1: ");
+            int number1 = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Enter number2: ");
+            int number2 = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Enter number3: ");
+            int number3 = Convert.ToInt32(Console.ReadLine());
+
+
+            bool result = number1 < number2 && number1 < number3;
+
+            Console.WriteLine("Is the first number the smallest? " + result);
+        }
+
+
+        // 3. Spring Season Program
+        static void SpringSeason()
+        {
+            Console.Write("Enter month: ");
+            int month = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Enter day: ");
+            int day = Convert.ToInt32(Console.ReadLine());
+
+
+            bool isSpring = false;
+
+            if ((month == 3 && day >= 20) ||
+                (month == 4) ||
+                (month == 5) ||
+                (month == 6 && day <= 20))
+            {
+                isSpring = true;
+            }
+
+
+            if (isSpring)
+                Console.WriteLine("Its a Spring Season");
+            else
+                Console.WriteLine("Not a Spring Season");
+        }
+
+
+        // 4. Rocket Countdown using while loop
+        static void RocketCountdown()
+        {
+            Console.Write("Enter countdown number: ");
+            int counter = Convert.ToInt32(Console.ReadLine());
+
+
+            while (counter >= 1)
+            {
+                Console.WriteLine(counter);
+                counter--;
+            }
+
+            Console.WriteLine("Blast Off!");
+        }
+
+
+        // 5. Sum numbers until user enters 0
+        static void SumUntilZero()
+        {
+            double total = 0;
+
+            Console.Write("Enter number: ");
+            double number = Convert.ToDouble(Console.ReadLine());
+
+
+            while (number != 0)
+            {
+                total += number;
+
+                Console.Write("Enter number: ");
+                number = Convert.ToDouble(Console.ReadLine());
+            }
+
+
+            Console.WriteLine("Total sum is " + total);
+        }
+
+
+        // 6. Sum until 0 or negative using break
+        static void SumUntilNegative()
+        {
+            double total = 0;
+
+
+            while (true)
+            {
+                Console.Write("Enter number: ");
+                double number = Convert.ToDouble(Console.ReadLine());
+
+
+                if (number <= 0)
+                {
+                    break;
+                }
+
+
+                total += number;
+            }
+
+
+            Console.WriteLine("Total sum is " + total);
+        }
+
+
+        // 7. Sum of natural numbers using formula and while loop
+        static void NaturalNumberSum()
+        {
+            Console.Write("Enter natural number: ");
+            int n = Convert.ToInt32(Console.ReadLine());
+
+
+            if (n <= 0)
+            {
+                Console.WriteLine("Not a natural number");
+                return;
+            }
+
+
+            int sumUsingLoop = 0;
+            int i = 1;
+
+
+            while (i <= n)
+            {
+                sumUsingLoop += i;
+                i++;
+            }
+
+
+            int sumUsingFormula = n * (n + 1) / 2;
+
+
+            Console.WriteLine("Sum using loop: " + sumUsingLoop);
+            Console.WriteLine("Sum using formula: " + sumUsingFormula);
+
+
+            if (sumUsingLoop == sumUsingFormula)
+                Console.WriteLine("Both results are correct");
+            else
+                Console.WriteLine("Results are different");
+        }
+
+
+        // 8. Employee Bonus Calculation
+        static void EmployeeBonus()
+        {
+            Console.Write("Enter salary: ");
+            double salary = Convert.ToDouble(Console.ReadLine());
+
+
+            Console.Write("Enter years of service: ");
+            int years = Convert.ToInt32(Console.ReadLine());
+
+
+            double bonus = 0;
+
+
+            if (years > 5)
+            {
+                bonus = salary * 0.05;
+            }
+
+
+            Console.WriteLine("Bonus amount is " + bonus);
+        }
+
+
+        // 9. Multiplication table from 6 to 9
+        static void MultiplicationTable()
+        {
+            Console.Write("Enter number: ");
+            int number = Convert.ToInt32(Console.ReadLine());
+
+
+            for (int i = 6; i <= 9; i++)
+            {
+                Console.WriteLine(number + " * " + i + " = " + (number * i));
+            }
+        }
+    }
+}
