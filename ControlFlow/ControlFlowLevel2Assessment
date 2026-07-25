@@ -1,0 +1,286 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Arrays_Assesment.ControlFlow
+{
+    internal class Level2
+    {
+        static void Main()
+        {
+            //LeapYearMultipleIfElse();
+            //LeapYearSingleCondition();
+            //PrimeNumber();
+            //FizzBuzzForLoop();
+            //FizzBuzzWhileLoop();
+            //CalculateBMI();
+            //PowerCalculation();
+            //FindFactors();
+            //FindMultiples();
+        }
+
+
+        // 1. Leap Year using multiple if-else statements
+        static void LeapYearMultipleIfElse()
+        {
+            Console.Write("Enter year: ");
+            int year = Convert.ToInt32(Console.ReadLine());
+
+            if (year < 1582)
+            {
+                Console.WriteLine("Invalid Year");
+            }
+            else if (year % 400 == 0)
+            {
+                Console.WriteLine(year + " is a Leap Year");
+            }
+            else if (year % 100 == 0)
+            {
+                Console.WriteLine(year + " is not a Leap Year");
+            }
+            else if (year % 4 == 0)
+            {
+                Console.WriteLine(year + " is a Leap Year");
+            }
+            else
+            {
+                Console.WriteLine(year + " is not a Leap Year");
+            }
+        }
+
+
+
+        // 2. Leap Year using single if condition with && and ||
+        static void LeapYearSingleCondition()
+        {
+            Console.Write("Enter year: ");
+            int year = Convert.ToInt32(Console.ReadLine());
+
+
+            if (year >= 1582 &&
+               ((year % 400 == 0) ||
+               (year % 4 == 0 && year % 100 != 0)))
+            {
+                Console.WriteLine(year + " is a Leap Year");
+            }
+            else
+            {
+                Console.WriteLine(year + " is not a Leap Year");
+            }
+        }
+
+
+
+        // 3. Prime Number Check
+        static void PrimeNumber()
+        {
+            Console.Write("Enter number: ");
+            int number = Convert.ToInt32(Console.ReadLine());
+
+
+            bool isPrime = true;
+
+
+            if (number <= 1)
+            {
+                isPrime = false;
+            }
+            else
+            {
+                for (int i = 2; i < number; i++)
+                {
+                    if (number % i == 0)
+                    {
+                        isPrime = false;
+                        break;
+                    }
+                }
+            }
+
+
+            if (isPrime)
+                Console.WriteLine(number + " is a Prime Number");
+            else
+                Console.WriteLine(number + " is not a Prime Number");
+        }
+
+
+
+        // 4. FizzBuzz using for loop
+        static void FizzBuzzForLoop()
+        {
+            Console.Write("Enter number: ");
+            int number = Convert.ToInt32(Console.ReadLine());
+
+
+            if (number > 0)
+            {
+                for (int i = 0; i <= number; i++)
+                {
+                    if (i % 3 == 0 && i % 5 == 0)
+                    {
+                        Console.WriteLine("FizzBuzz");
+                    }
+                    else if (i % 3 == 0)
+                    {
+                        Console.WriteLine("Fizz");
+                    }
+                    else if (i % 5 == 0)
+                    {
+                        Console.WriteLine("Buzz");
+                    }
+                    else
+                    {
+                        Console.WriteLine(i);
+                    }
+                }
+            }
+        }
+
+
+
+        // 5. FizzBuzz using while loop
+        static void FizzBuzzWhileLoop()
+        {
+            Console.Write("Enter number: ");
+            int number = Convert.ToInt32(Console.ReadLine());
+
+            int i = 0;
+
+
+            while (i <= number)
+            {
+                if (i % 3 == 0 && i % 5 == 0)
+                {
+                    Console.WriteLine("FizzBuzz");
+                }
+                else if (i % 3 == 0)
+                {
+                    Console.WriteLine("Fizz");
+                }
+                else if (i % 5 == 0)
+                {
+                    Console.WriteLine("Buzz");
+                }
+                else
+                {
+                    Console.WriteLine(i);
+                }
+
+                i++;
+            }
+        }
+
+
+
+        // 6. BMI Calculator
+        static void CalculateBMI()
+        {
+            Console.Write("Enter weight in kg: ");
+            double weight = Convert.ToDouble(Console.ReadLine());
+
+
+            Console.Write("Enter height in cm: ");
+            double heightCm = Convert.ToDouble(Console.ReadLine());
+
+
+            double heightMeter = heightCm / 100;
+
+
+            double bmi = weight / (heightMeter * heightMeter);
+
+
+            string status;
+
+
+            if (bmi < 18.5)
+            {
+                status = "Underweight";
+            }
+            else if (bmi < 25)
+            {
+                status = "Normal Weight";
+            }
+            else if (bmi < 30)
+            {
+                status = "Overweight";
+            }
+            else
+            {
+                status = "Obese";
+            }
+
+
+            Console.WriteLine("BMI = " + bmi.ToString("0.00"));
+            Console.WriteLine("Status = " + status);
+        }
+
+
+
+        // 7. Power Calculation
+        static void PowerCalculation()
+        {
+            Console.Write("Enter number: ");
+            int number = Convert.ToInt32(Console.ReadLine());
+
+
+            Console.Write("Enter power: ");
+            int power = Convert.ToInt32(Console.ReadLine());
+
+
+            int result = 1;
+
+
+            for (int i = 1; i <= power; i++)
+            {
+                result = result * number;
+            }
+
+
+            Console.WriteLine(number + " raised to power "
+                + power + " is " + result);
+        }
+
+
+
+        // 8. Find Factors of a Number
+        static void FindFactors()
+        {
+            Console.Write("Enter number: ");
+            int number = Convert.ToInt32(Console.ReadLine());
+
+
+            Console.WriteLine("Factors are:");
+
+
+            for (int i = 1; i < number; i++)
+            {
+                if (number % i == 0)
+                {
+                    Console.WriteLine(i);
+                }
+            }
+        }
+
+
+
+        // 9. Find multiples below 100
+        static void FindMultiples()
+        {
+            Console.Write("Enter number: ");
+            int number = Convert.ToInt32(Console.ReadLine());
+
+
+            Console.WriteLine("Multiples below 100 are:");
+
+
+            for (int i = 100; i >= 1; i--)
+            {
+                if (i % number == 0)
+                {
+                    Console.WriteLine(i);
+                }
+            }
+        }
+    }
+}
