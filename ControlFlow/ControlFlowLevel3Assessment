@@ -1,0 +1,271 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ControlFlow
+{
+    internal class Level3
+    {
+        static void Main()
+        {
+            //ArmstrongNumber();
+            //CountDigits();
+            //HarshadNumber();
+            //AbundantNumber();
+            //DayOfWeekProgram();
+            //Calculator();
+        }
+
+
+        // 1. Armstrong Number Program
+        static void ArmstrongNumber()
+        {
+            Console.Write("Enter number: ");
+            int number = Convert.ToInt32(Console.ReadLine());
+
+            int originalNumber = number;
+
+            int digits = 0;
+            int temp = number;
+
+            while (temp > 0)
+            {
+                digits++;
+                temp = temp / 10;
+            }
+
+
+            int sum = 0;
+            temp = number;
+
+            while (temp > 0)
+            {
+                int digit = temp % 10;
+
+                int power = 1;
+
+                for (int i = 1; i <= digits; i++)
+                {
+                    power = power * digit;
+                }
+
+                sum = sum + power;
+
+                temp = temp / 10;
+            }
+
+
+            if (sum == originalNumber)
+            {
+                Console.WriteLine(originalNumber + " is an Armstrong Number");
+            }
+            else
+            {
+                Console.WriteLine(originalNumber + " is not an Armstrong Number");
+            }
+        }
+
+
+
+        // 2. Count Number of Digits
+        static void CountDigits()
+        {
+            Console.Write("Enter number: ");
+            int number = Convert.ToInt32(Console.ReadLine());
+
+
+            int count = 0;
+
+            while (number > 0)
+            {
+                number = number / 10;
+                count++;
+            }
+
+
+            Console.WriteLine("Number of digits are: " + count);
+        }
+
+
+
+        // 3. Harshad Number Program
+        static void HarshadNumber()
+        {
+            Console.Write("Enter number: ");
+            int number = Convert.ToInt32(Console.ReadLine());
+
+            int originalNumber = number;
+            int sum = 0;
+
+
+            while (number > 0)
+            {
+                int digit = number % 10;
+                sum = sum + digit;
+
+                number = number / 10;
+            }
+
+
+            if (originalNumber % sum == 0)
+            {
+                Console.WriteLine(originalNumber + " is a Harshad Number");
+            }
+            else
+            {
+                Console.WriteLine(originalNumber + " is not a Harshad Number");
+            }
+        }
+
+
+
+        // 4. Abundant Number Program
+       
+        static void AbundantNumber()
+        {
+            Console.Write("Enter number: ");
+            int number = Convert.ToInt32(Console.ReadLine());
+
+
+            int sum = 0;
+
+
+            for (int i = 1; i < number; i++)
+            {
+                if (number % i == 0)
+                {
+                    sum = sum + i;
+                }
+            }
+
+
+            if (sum > number)
+            {
+                Console.WriteLine(number + " is an Abundant Number");
+            }
+            else
+            {
+                Console.WriteLine(number + " is not an Abundant Number");
+            }
+        }
+
+
+
+        // 5. Day Of Week using Gregorian Formula
+        static void DayOfWeekProgram()
+        {
+            Console.Write("Enter month: ");
+            int m = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Enter day: ");
+            int d = Convert.ToInt32(Console.ReadLine());
+
+            Console.Write("Enter year: ");
+            int y = Convert.ToInt32(Console.ReadLine());
+
+
+            int y0 = y - (14 - m) / 12;
+
+            int x = y0 + y0 / 4 - y0 / 100 + y0 / 400;
+
+            int m0 = m + 12 * ((14 - m) / 12) - 2;
+
+            int d0 = (d + x + (31 * m0) / 12) % 7;
+
+
+            Console.WriteLine("Day of week is: " + d0);
+
+
+            switch (d0)
+            {
+                case 0:
+                    Console.WriteLine("Sunday");
+                    break;
+
+                case 1:
+                    Console.WriteLine("Monday");
+                    break;
+
+                case 2:
+                    Console.WriteLine("Tuesday");
+                    break;
+
+                case 3:
+                    Console.WriteLine("Wednesday");
+                    break;
+
+                case 4:
+                    Console.WriteLine("Thursday");
+                    break;
+
+                case 5:
+                    Console.WriteLine("Friday");
+                    break;
+
+                case 6:
+                    Console.WriteLine("Saturday");
+                    break;
+            }
+        }
+
+
+
+        // 6. Calculator using switch case
+        static void Calculator()
+        {
+            Console.Write("Enter first number: ");
+            double first = Convert.ToDouble(Console.ReadLine());
+
+
+            Console.Write("Enter second number: ");
+            double second = Convert.ToDouble(Console.ReadLine());
+
+
+            Console.Write("Enter operator (+,-,*,/): ");
+            string op = Console.ReadLine();
+
+
+            double result;
+
+
+            switch (op)
+            {
+                case "+":
+                    result = first + second;
+                    Console.WriteLine("Result = " + result);
+                    break;
+
+
+                case "-":
+                    result = first - second;
+                    Console.WriteLine("Result = " + result);
+                    break;
+
+
+                case "*":
+                    result = first * second;
+                    Console.WriteLine("Result = " + result);
+                    break;
+
+
+                case "/":
+                    if (second != 0)
+                    {
+                        result = first / second;
+                        Console.WriteLine("Result = " + result);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Cannot divide by zero");
+                    }
+                    break;
+
+
+                default:
+                    Console.WriteLine("Invalid Operator");
+                    break;
+            }
+
+        }
+    }
+}
