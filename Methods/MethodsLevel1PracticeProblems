@@ -1,0 +1,236 @@
+using System;
+
+class Level2Practice
+{
+    static void Main()
+    {
+        //MaximumHandshakes();
+        //AthleteRounds();
+        //CheckNumber();
+        //SpringSeason();
+        //SumNaturalNumbers();
+        //SmallestLargest();
+        //QuotientRemainder();
+        //ChocolateDistribution();
+        //WindChill();
+        //TrigonometricFunctions();
+    }
+
+   
+    static void MaximumHandshakes()
+    {
+        Console.Write("Enter number of students: ");
+        int n = Convert.ToInt32(Console.ReadLine());
+
+        int handshakes = CalculateHandshakes(n);
+
+        Console.WriteLine("Maximum handshakes = " + handshakes);
+    }
+
+    static int CalculateHandshakes(int n)
+    {
+        return (n * (n - 1)) / 2;
+    }
+
+
+    static void AthleteRounds()
+    {
+        Console.Write("Enter side 1: ");
+        double s1 = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Enter side 2: ");
+        double s2 = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Enter side 3: ");
+        double s3 = Convert.ToDouble(Console.ReadLine());
+
+        double rounds = CalculateRounds(s1, s2, s3);
+
+        Console.WriteLine("Rounds required = " + rounds.ToString("0.00"));
+    }
+
+    static double CalculateRounds(double a, double b, double c)
+    {
+        double perimeter = a + b + c;
+        return 5000 / perimeter;
+    }
+
+
+
+    static void CheckNumber()
+    {
+        Console.Write("Enter number: ");
+        int number = Convert.ToInt32(Console.ReadLine());
+
+        int result = CheckSign(number);
+
+        Console.WriteLine(result);
+    }
+
+    static int CheckSign(int number)
+    {
+        if (number > 0)
+            return 1;
+        else if (number < 0)
+            return -1;
+        else
+            return 0;
+    }
+
+
+   
+    static void SpringSeason()
+    {
+        Console.Write("Enter month: ");
+        int month = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Enter day: ");
+        int day = Convert.ToInt32(Console.ReadLine());
+
+        bool spring = IsSpring(month, day);
+
+        if (spring)
+            Console.WriteLine("Its a Spring Season");
+        else
+            Console.WriteLine("Not a Spring Season");
+    }
+
+    static bool IsSpring(int month, int day)
+    {
+        return (month == 3 && day >= 20)
+            || (month == 4)
+            || (month == 5)
+            || (month == 6 && day <= 20);
+    }
+
+
+    static void SumNaturalNumbers()
+    {
+        Console.Write("Enter n: ");
+        int n = Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine("Sum = " + FindSum(n));
+    }
+
+    static int FindSum(int n)
+    {
+        int sum = 0;
+
+        for (int i = 1; i <= n; i++)
+        {
+            sum += i;
+        }
+
+        return sum;
+    }
+
+
+    static void SmallestLargest()
+    {
+        Console.Write("Enter first number: ");
+        int n1 = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Enter second number: ");
+        int n2 = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Enter third number: ");
+        int n3 = Convert.ToInt32(Console.ReadLine());
+
+        int[] result = FindSmallestAndLargest(n1, n2, n3);
+
+        Console.WriteLine("Smallest = " + result[0]);
+        Console.WriteLine("Largest = " + result[1]);
+    }
+
+    static int[] FindSmallestAndLargest(int a, int b, int c)
+    {
+        int smallest = Math.Min(a, Math.Min(b, c));
+        int largest = Math.Max(a, Math.Max(b, c));
+
+        return new int[] { smallest, largest };
+    }
+
+
+    static void QuotientRemainder()
+    {
+        Console.Write("Enter number: ");
+        int number = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Enter divisor: ");
+        int divisor = Convert.ToInt32(Console.ReadLine());
+
+        int[] result = FindRemainderAndQuotient(number, divisor);
+
+        Console.WriteLine("Quotient = " + result[0]);
+        Console.WriteLine("Remainder = " + result[1]);
+    }
+
+    static int[] FindRemainderAndQuotient(int number, int divisor)
+    {
+        return new int[]
+        {
+            number / divisor,
+            number % divisor
+        };
+    }
+
+
+ 
+    static void ChocolateDistribution()
+    {
+        Console.Write("Enter chocolates: ");
+        int chocolates = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Enter children: ");
+        int children = Convert.ToInt32(Console.ReadLine());
+
+        int[] result = FindRemainderAndQuotient(chocolates, children);
+
+        Console.WriteLine("Each child gets = " + result[0]);
+        Console.WriteLine("Remaining chocolates = " + result[1]);
+    }
+
+    static void WindChill()
+    {
+        Console.Write("Enter temperature: ");
+        double temperature = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Enter wind speed: ");
+        double windSpeed = Convert.ToDouble(Console.ReadLine());
+
+        Console.WriteLine("Wind Chill = " +
+            CalculateWindChill(temperature, windSpeed));
+    }
+
+    static double CalculateWindChill(double temperature, double windSpeed)
+    {
+        return 35.74
+             + 0.6215 * temperature
+             + (0.4275 * temperature - 35.75)
+             * Math.Pow(windSpeed, 0.16);
+    }
+
+    static void TrigonometricFunctions()
+    {
+        Console.Write("Enter angle in degrees: ");
+        double angle = Convert.ToDouble(Console.ReadLine());
+
+        double[] values = CalculateTrigonometricFunctions(angle);
+
+        Console.WriteLine("Sin = " + values[0]);
+        Console.WriteLine("Cos = " + values[1]);
+        Console.WriteLine("Tan = " + values[2]);
+    }
+
+    static double[] CalculateTrigonometricFunctions(double angle)
+    {
+        double radians = angle * Math.PI / 180;
+
+        return new double[]
+        {
+            Math.Sin(radians),
+            Math.Cos(radians),
+            Math.Tan(radians)
+        };
+    }
+}
