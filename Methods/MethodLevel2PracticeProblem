@@ -1,0 +1,180 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        //Console.Write("Enter n: ");
+        //int n = Convert.ToInt32(Console.ReadLine());
+
+        //if (n <= 0)
+        //{
+        //    Console.WriteLine("Not a Natural Number");
+        //    return;
+        //}
+
+        //int recursiveSum = FindSumRecursive(n);
+        //int formulaSum = FindSumFormula(n);
+
+        //Console.WriteLine("Recursive Sum = " + recursiveSum);
+        //Console.WriteLine("Formula Sum = " + formulaSum);
+
+        //if (recursiveSum == formulaSum)
+        //    Console.WriteLine("Both results are correct.");
+
+        int[] arr = Generate4DigitRandomArray(5);
+
+        int min = arr[0];
+        int max = arr[0];
+        int sum = 0;
+
+        Console.WriteLine("Random Numbers:");
+
+        foreach (int num in arr)
+        {
+            Console.WriteLine(num);
+
+            sum += num;
+            min = Math.Min(min, num);
+            max = Math.Max(max, num);
+        }
+
+        Console.WriteLine("Average = " + (double)sum / arr.Length);
+        Console.WriteLine("Minimum = " + min);
+        Console.WriteLine("Maximum = " + max);
+    }
+
+    static int FindSumRecursive(int n)
+    {
+        if (n == 1)
+            return 1;
+
+        return n + FindSumRecursive(n - 1);
+    }
+
+    static int FindSumFormula(int n)
+    {
+        return n * (n + 1) / 2;
+    }
+
+    public static double ConvertKmToMiles(double km)
+    {
+        return km * 0.621371;
+    }
+
+    public static double ConvertMilesToKm(double miles)
+    {
+        return miles * 1.60934;
+    }
+
+    public static double ConvertMetersToFeet(double meters)
+    {
+        return meters * 3.28084;
+    }
+
+    public static double ConvertFeetToMeters(double feet)
+    {
+        return feet * 0.3048;
+    }
+
+    public static double ConvertYardsToFeet(double yards)
+    {
+        return yards * 3;
+    }
+
+    public static double ConvertFeetToYards(double feet)
+    {
+        return feet * 0.333333;
+    }
+
+    public static double ConvertMetersToInches(double meters)
+    {
+        return meters * 39.3701;
+    }
+
+    public static double ConvertInchesToMeters(double inches)
+    {
+        return inches * 0.0254;
+    }
+
+    public static double ConvertInchesToCentimeters(double inches)
+    {
+        return inches * 2.54;
+    }
+
+    public static double ConvertFahrenheitToCelsius(double f)
+    {
+        return (f - 32) * 5 / 9;
+    }
+
+    public static double ConvertCelsiusToFahrenheit(double c)
+    {
+        return (c * 9 / 5) + 32;
+    }
+
+    public static double ConvertPoundsToKilograms(double pounds)
+    {
+        return pounds * 0.453592;
+    }
+
+    public static double ConvertKilogramsToPounds(double kg)
+    {
+        return kg * 2.20462;
+    }
+
+    public static double ConvertGallonsToLiters(double gallons)
+    {
+        return gallons * 3.78541;
+    }
+
+    public static double ConvertLitersToGallons(double liters)
+    {
+        return liters * 0.264172;
+    }
+
+
+    public bool CanStudentVote(int age)
+    {
+        if (age < 0)
+            return false;
+
+        return age >= 18;
+    }
+
+    static double[] FindRoots(double a, double b, double c)
+    {
+        double delta = b * b - 4 * a * c;
+
+        if (delta > 0)
+        {
+            double root1 = (-b + Math.Sqrt(delta)) / (2 * a);
+            double root2 = (-b - Math.Sqrt(delta)) / (2 * a);
+
+            return new double[] { root1, root2 };
+        }
+        else if (delta == 0)
+        {
+            return new double[]
+            {
+                -b / (2 * a)
+            };
+        }
+
+        return new double[0];
+    }
+
+    static int[] Generate4DigitRandomArray(int size)
+    {
+        Random random = new Random();
+
+        int[] arr = new int[size];
+
+        for (int i = 0; i < size; i++)
+        {
+            arr[i] = random.Next(1000, 10000);
+        }
+
+        return arr;
+    }
+
+}
