@@ -1,0 +1,211 @@
+using System;
+
+class Practice
+{
+    static void Main()
+    {
+        //Console.Write("Enter x1: ");
+        //double x1 = Convert.ToDouble(Console.ReadLine());
+
+        //Console.Write("Enter y1: ");
+        //double y1 = Convert.ToDouble(Console.ReadLine());
+
+        //Console.Write("Enter x2: ");
+        //double x2 = Convert.ToDouble(Console.ReadLine());
+
+        //Console.Write("Enter y2: ");
+        //double y2 = Convert.ToDouble(Console.ReadLine());
+
+        //double distance = FindDistance(x1, y1, x2, y2);
+
+        //Console.WriteLine("Distance = " + distance.ToString("0.00"));
+
+        //double[] equation = FindLineEquation(x1, y1, x2, y2);
+
+        //Console.WriteLine("Slope (m) = " + equation[0]);
+        //Console.WriteLine("Intercept (b) = " + equation[1]);
+
+        //Console.WriteLine($"Equation : y = {equation[0]}x + {equation[1]}");
+
+        //Console.Write("Enter x1: ");
+        //double x1 = Convert.ToDouble(Console.ReadLine());
+
+        //Console.Write("Enter y1: ");
+        //double y1 = Convert.ToDouble(Console.ReadLine());
+
+        //Console.Write("Enter x2: ");
+        //double x2 = Convert.ToDouble(Console.ReadLine());
+
+        //Console.Write("Enter y2: ");
+        //double y2 = Convert.ToDouble(Console.ReadLine());
+
+        //Console.Write("Enter x3: ");
+        //double x3 = Convert.ToDouble(Console.ReadLine());
+
+        //Console.Write("Enter y3: ");
+        //double y3 = Convert.ToDouble(Console.ReadLine());
+
+        //Console.WriteLine("Using Slope : " + IsCollinearSlope(x1, y1, x2, y2, x3, y3));
+
+        //Console.WriteLine("Using Area : " + IsCollinearArea(x1, y1, x2, y2, x3, y3));
+
+        //double[,] employee = GenerateEmployeeData();
+
+        //double[,] result = CalculateBonus(employee);
+
+        //Display(employee, result);
+    }
+
+    static double FindDistance(double x1, double y1, double x2, double y2)
+    {
+        return Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
+    }
+
+    static double[] FindLineEquation(double x1, double y1, double x2, double y2)
+    {
+        double m = (y2 - y1) / (x2 - x1);
+        double b = y1 - m * x1;
+
+        return new double[] { m, b };
+    }
+    static bool IsCollinearSlope(double x1, double y1, double x2, double y2, double x3, double y3)
+    {
+        double slopeAB = (y2 - y1) / (x2 - x1);
+        double slopeBC = (y3 - y2) / (x3 - x2);
+        double slopeAC = (y3 - y1) / (x3 - x1);
+
+        return slopeAB == slopeBC && slopeBC == slopeAC;
+    }
+
+    static bool IsCollinearArea(double x1, double y1, double x2, double y2, double x3, double y3)
+    {
+        double area = 0.5 *
+        (
+            x1 * (y2 - y3)
+          + x2 * (y3 - y1)
+          + x3 * (y1 - y2)
+        );
+
+        return area == 0;
+    }
+    static double[,] GenerateEmployeeData()
+    {
+        Random random = new Random();
+
+        double[,] employee = new double[10, 2];
+
+        for (int i = 0; i < 10; i++)
+        {
+            employee[i, 0] = random.Next(10000, 100000); // salary
+            employee[i, 1] = random.Next(1, 11);         // years
+        }
+
+        return employee;
+    }
+
+    static double[,] CalculateBonus(double[,] employee)
+    {
+        double[,] result = new double[10, 2];
+
+        for (int i = 0; i < 10; i++)
+        {
+            double salary = employee[i, 0];
+            double years = employee[i, 1];
+
+            double bonus = years > 5 ? salary * 0.05 : salary * 0.02;
+
+            result[i, 0] = bonus;
+            result[i, 1] = salary + bonus;
+        }
+
+        return result;
+    }
+
+    static void Display(double[,] employee, double[,] result)
+    {
+        double totalOld = 0;
+        double totalBonus = 0;
+        double totalNew = 0;
+
+        Console.WriteLine("Salary\tYears\tBonus\tNew Salary");
+
+        for (int i = 0; i < 10; i++)
+        {
+            Console.WriteLine(employee[i, 0] + "\t" +
+                              employee[i, 1] + "\t" +
+                              result[i, 0] + "\t" +
+                              result[i, 1]);
+
+            totalOld += employee[i, 0];
+            totalBonus += result[i, 0];
+            totalNew += result[i, 1];
+        }
+
+        Console.WriteLine("\nTotal Old Salary = " + totalOld);
+        Console.WriteLine("Total Bonus = " + totalBonus);
+        Console.WriteLine("Total New Salary = " + totalNew);
+    }
+    static int[,] GenerateMarks(int n)
+    {
+        Random random = new Random();
+
+        int[,] marks = new int[n, 3];
+
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                marks[i, j] = random.Next(35, 101);
+            }
+        }
+
+        return marks;
+    }
+
+    static double[,] CalculateResult(int[,] marks)
+    {
+        int n = marks.GetLength(0);
+
+        double[,] result = new double[n, 3];
+        // total average percentage
+
+        for (int i = 0; i < n; i++)
+        {
+            int total = 0;
+
+            for (int j = 0; j < 3; j++)
+            {
+                total += marks[i, j];
+            }
+
+            double average = (double)total / 3;
+            double percentage = (double)total / 300 * 100;
+
+            result[i, 0] = total;
+            result[i, 1] = Math.Round(average, 2);
+            result[i, 2] = Math.Round(percentage, 2);
+        }
+
+        return result;
+    }
+
+    static void Display(int[,] marks, double[,] result)
+    {
+        Console.WriteLine();
+
+        Console.WriteLine("Phy\tChem\tMath\tTotal\tAverage\tPercentage");
+
+        for (int i = 0; i < marks.GetLength(0); i++)
+        {
+            Console.WriteLine(
+                marks[i, 0] + "\t" +
+                marks[i, 1] + "\t" +
+                marks[i, 2] + "\t" +
+                result[i, 0] + "\t" +
+                result[i, 1] + "\t" +
+                result[i, 2]);
+        }
+    }
+
+
+}
