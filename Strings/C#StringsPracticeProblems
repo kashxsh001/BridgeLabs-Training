@@ -1,0 +1,205 @@
+using System;
+using System.ComponentModel;
+
+namespace Practice
+
+{
+    class Strings
+    {
+        static string RemoveDuplicate()
+        {
+            string s = Console.ReadLine()!;
+            string result = "";
+            
+            for(int i = 0; i < s.Length; i++)
+            {
+                bool isDuplicate = false;
+                for(int j = 0; j < result.Length; j++)
+                {
+                    if (s[i] == result[j]) {
+                        isDuplicate = true;
+                        break;
+                    } 
+                }
+
+                if (!isDuplicate)
+                {
+                    result += s[i];
+                }
+            }
+            return result;
+        }
+        static string LongestWord()
+        {
+            string? sentence = Console.ReadLine()!;
+            string currentword = "";
+            string longestword = "";
+            foreach(char c in sentence)
+            {
+                if(c!=' ')
+                {
+                    currentword += c;
+                }
+                else
+                {
+                    if (currentword.Length > longestword.Length)
+                    {
+                        longestword = currentword;
+                    }
+                    currentword = "";
+                }
+              
+            }
+            if (currentword.Length > longestword.Length)
+            {
+                longestword = currentword;
+            }
+
+            return longestword;
+        }
+
+        public static bool Pallindrome()
+        {
+            String? s = Console.ReadLine();
+            int i = 0;
+            int j = s.Length - 1;
+            while (i < j)
+            {
+                if (s[i] != s[j])
+                {
+                    return false;
+
+                }
+                i++;
+                j--;
+            }
+
+            return true;
+        }
+        static int Count()
+        {
+            string s = Console.ReadLine()!;
+            string sub = Console.ReadLine()!;
+            int count = 0;
+            for(int i = 0; i < s.Length; i++)
+            {
+               if(s.Substring(i, sub.Length) == sub)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        static string Toggle()
+        {
+            string s = Console.ReadLine()!;
+            char[] chars = s.ToCharArray();
+            for (int i = 0; i < chars.Length; i++)
+            {
+                if (char.IsUpper(chars[i]))
+                {
+                    chars[i] = char.ToLower(chars[i]);
+                }
+                else if (char.IsLower(chars[i]))
+                {
+                    chars[i] = char.ToUpper(chars[i]);
+                }
+
+            }
+            return new string(chars);
+        }
+
+        static char MostFrequent()
+        {
+            string s = Console.ReadLine()!;
+            char[] chars = s.ToCharArray();
+            int[] freq = new int[256];
+            for(int i = 0; i < chars.Length; i++)
+            {
+                freq[i]++;
+            }
+
+            char MaxChar = s[0];
+            int max = freq[MaxChar];
+            foreach(char c in s)
+            {
+                if (freq[c] > max)
+                {
+                    MaxChar = c;
+                    max = freq[MaxChar];
+                }
+            }
+            return MaxChar;
+
+        }
+        static string Anangrams()
+        {
+            string s1 = Console.ReadLine()!;
+            string s2 = Console.ReadLine()!;
+            int[] freq = new int[256];
+            foreach(char c in s1)
+            {
+                freq[c]++;
+            }
+
+            foreach(char c in s2)
+            {
+                freq[c]--;
+            }
+
+            for(int i = 0; i < 256; i++)
+            {
+                if (freq[i] != 0)
+                {
+                    return "Not anagrams";
+                }
+            }
+
+            return "Anagrams";
+        }
+
+
+        static void Main(string[] args)
+        {
+
+            //String? s = Console.ReadLine();
+            //s=s.ToUpper();
+            //int vCount = 0;
+            //int count = 0;
+            //for (int i = 0; i < s.Length; i++)
+            //{
+            //    if (s[i]=='A'|| s[i] == 'E' || s[i]=='I' || s[i]=='O' || s[i] == 'U')
+            //    {
+            //        vCount++;
+            //    }
+            //    else
+            //    {
+            //        count++;
+            //    }
+            //}
+            //Console.WriteLine($"In the string {s} the vowel count is {vCount} and consonants count is {count}");
+
+            //String? s = Console.ReadLine();
+            //char[] c= s.ToCharArray();
+            //int i = 0;
+            //int j = c.Length - 1;
+            //while (i < j)
+            //{
+            //    char temp = c[i];
+            //    c[i] = c[j];
+            //    c[j] = temp;
+            //    i++;
+            //    j--;
+            //}
+            //String reversed = new string(c);
+
+            //Console.WriteLine($"The original string is {s} and the reversed string is {reversed}");
+            string s =LongestWord();
+            Console.WriteLine(s);
+        }
+
+    }
+}
+
+
