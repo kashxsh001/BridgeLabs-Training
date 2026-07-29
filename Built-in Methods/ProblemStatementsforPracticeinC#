@@ -1,0 +1,89 @@
+using System;
+namespace Practice
+{
+    class DateAndTime
+    {
+        static void DisplayTimeZones()
+        {
+            DateTimeOffset currentTime = DateTimeOffset.UtcNow;
+
+            Console.WriteLine("GMT : " + currentTime);
+
+            TimeZoneInfo istZone = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
+            DateTimeOffset istTime = TimeZoneInfo.ConvertTime(currentTime, istZone);
+
+            Console.WriteLine("IST : " + istTime);
+
+            try
+            {
+                TimeZoneInfo pstZone = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time");
+                DateTimeOffset pstTime = TimeZoneInfo.ConvertTime(currentTime, pstZone);
+
+                Console.WriteLine("PST : " + pstTime);
+            }
+            catch
+            {
+                Console.WriteLine("Pacific Standard Time zone not found.");
+            }
+        }
+
+        static DateTime PerformDateArithmetic(DateTime date)
+        {
+            date = date.AddDays(7);
+            date = date.AddMonths(1);
+            date = date.AddYears(2);
+
+            // 3 weeks = 21 days
+            date = date.AddDays(-21);
+
+            return date;
+        }
+
+        static void CompareDates(DateTime date1, DateTime date2)
+        {
+            int result = DateTime.Compare(date1, date2);
+
+            if (result < 0)
+            {
+                Console.WriteLine("First date is before the second date.");
+            }
+            else if (result > 0)
+            {
+                Console.WriteLine("First date is after the second date.");
+            }
+            else
+            {
+                Console.WriteLine("Both dates are the same.");
+            }
+        }
+
+        static void Main(String[] args)
+        {
+            //Console.Write("Enter first date (dd/MM/yyyy): ");
+            //DateTime date1 = DateTime.ParseExact(Console.ReadLine(),
+            //                                     "dd/MM/yyyy", null);
+
+            //Console.Write("Enter second date (dd/MM/yyyy): ");
+            //DateTime date2 = DateTime.ParseExact(Console.ReadLine(),
+            //                                     "dd/MM/yyyy", null);
+
+            //CompareDates(date1, date2);
+
+            //DateTime today = DateTime.Now;
+
+            //Console.WriteLine(today.ToString("dd/MM/yyyy"));
+
+            //Console.WriteLine(today.ToString("yyyy-MM-dd"));
+
+            //Console.WriteLine(today.ToString("ddd, MMM dd, yyyy"));
+
+            //Console.Write("Enter date (dd/MM/yyyy): ");
+            //DateTime date = DateTime.ParseExact(Console.ReadLine(),
+            //                                    "dd/MM/yyyy", null);
+
+            //DateTime result = PerformDateArithmetic(date);
+
+            //Console.WriteLine("Final Date : " + result.ToShortDateString());
+        }
+    }
+}
