@@ -1,0 +1,123 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace DateAndTime
+{
+    internal class Practicee
+    {
+        static void  PlayGame()
+        {
+            Random random = new Random();
+            int low = 1;
+            int high = 100;
+
+            while(true){
+                int guess = random.Next(low, high + 1);
+                char feedback = Convert.ToChar(Console.ReadLine()!.ToUpper());
+                if (feedback == 'C')
+                {
+                    Console.WriteLine("Computer guessed the correct number!");
+                    break;
+                }
+                else if (feedback == 'H')
+                {
+                    high = guess - 1;
+                }
+                else if (feedback == 'L')
+                {
+                    low = guess + 1;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Input!");
+                }
+
+                if (low > high)
+                {
+                    Console.WriteLine("Invalid feedback! No possible number remains.");
+                    break;
+                }
+
+            }
+        }
+        static int FindMaximum(int a, int b, int c)
+        {
+            return Math.Max(a, Math.Max(b, c));
+        }
+        static bool IsPrime(int number)
+        {
+            if (number <= 1)
+                return false;
+
+            for (int i = 2; i <= Math.Sqrt(number); i++)
+            {
+                if (number % i == 0)
+                    return false;
+            }
+
+            return true;
+        }
+
+        static void Fibonacci(int n)
+        {
+            int first = 0;
+            int second = 1;
+
+            for (int i = 1; i <= n; i++)
+            {
+                Console.Write(first + " ");
+
+                int next = first + second;
+                first = second;
+                second = next;
+            }
+        }
+
+        static bool IsPalindrome(string text)
+        {
+            text = text.ToLower();
+
+            int left = 0;
+            int right = text.Length - 1;
+
+            while (left < right)
+            {
+                if (text[left] != text[right])
+                    return false;
+
+                left++;
+                right--;
+            }
+
+            return true;
+        }
+        static long Factorial(int n)
+        {
+            if (n == 0 || n == 1)
+                return 1;
+
+            return n * Factorial(n - 1);
+        }
+
+        static int GCD(int a, int b)
+        {
+            while (b != 0)
+            {
+                int temp = b;
+                b = a % b;
+                a = temp;
+            }
+
+            return a;
+        }
+
+        static int LCM(int a, int b)
+        {
+            return (a * b) / GCD(a, b);
+        }
+
+
+
+    }
+}
