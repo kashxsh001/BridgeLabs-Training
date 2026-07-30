@@ -1,0 +1,83 @@
+class OOPS
+{
+    class Employee
+    {
+       
+        public string Name { get; set; }
+        public int Id { get; set; }
+        public int Sal { get; set; }
+        public void Display()
+        {
+            Console.WriteLine($"The name of the employee is {Name} , id is {Id} amd salary is {Sal}.");
+        }
+    }   
+
+    class Circle
+    {
+        //public double radius { get; set; }
+        private double radius;
+         public double Radius
+        {
+            get
+            {
+                return radius;
+            }
+
+            set
+            {
+                radius = value;
+            }
+        }
+        public double area()
+        {
+            return 3.14 * radius * radius;
+        }
+        public double Circumference()
+        {
+            return 2 * 3.14 * radius;
+        }
+
+    }
+
+    class Book
+    {
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public int price {  get; set; }
+
+        public void Display()
+        {
+            Console.WriteLine($"The title of the book is {Title} ,it's author is {Author} and the price is {price}");
+        }
+    }
+
+    static void Main(String[] args)
+    {
+        //Employee emp = new Employee();
+        //emp.Name = "Kashish";
+        //emp.Id = 1;
+        //emp.Sal = 2000000;
+
+        //emp.Display();
+
+        // Circle circle = new Circle();
+        // circle.Radius = 10;
+        // double area = circle.area();
+        //double circumference = circle.Circumference();
+        // Console.WriteLine($"Area of circle is {area} and the circumference is {circumference}.");
+
+        Book book = new Book();
+        Console.WriteLine("Enter Title of the book:");
+        book.Title = Console.ReadLine()!;
+        Console.WriteLine("Enter Author of the book:");
+        book.Author = Console.ReadLine()!;
+        Console.WriteLine("Enter Price of the book:");
+        book.price = int.Parse(Console.ReadLine()!);
+        book.Display();
+
+
+
+
+    }
+}
+
