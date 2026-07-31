@@ -1,0 +1,101 @@
+using System;
+
+//class Course
+//{
+//    // Instance Variables
+//    private string courseName;
+//    private int duration;
+//    private double fee;
+
+//    // Static(Class) Variable
+//    private static string instituteName = "BridgeLabz";
+
+//    // Constructor
+//    public Course(string courseName, int duration, double fee)
+//    {
+//        this.courseName = courseName;
+//        this.duration = duration;
+//        this.fee = fee;
+//    }
+
+//    // Instance Method
+//    public void DisplayCourseDetails()
+//    {
+//        Console.WriteLine("\nCourse Details");
+//        Console.WriteLine("----------------------");
+//        Console.WriteLine("Institute Name : " + instituteName);
+//        Console.WriteLine("Course Name    : " + courseName);
+//        Console.WriteLine("Duration       : " + duration + " Months");
+//        Console.WriteLine("Course Fee     : ₹" + fee);
+//    }
+
+//    // Static(Class) Method
+//    public static void UpdateInstituteName(string newInstituteName)
+//    {
+//        instituteName = newInstituteName;
+//    }
+//}
+
+class Vehicle
+{
+    // Instance Variables
+    private string ownerName;
+    private string vehicleType;
+
+    // Static(Class) Variable
+    private static double registrationFee = 1500;
+
+    // Constructor
+    public Vehicle(string ownerName, string vehicleType)
+    {
+        this.ownerName = ownerName;
+        this.vehicleType = vehicleType;
+    }
+
+    // Instance Method
+    public void DisplayVehicleDetails()
+    {
+        Console.WriteLine("\nVehicle Details");
+        Console.WriteLine("------------------------");
+        Console.WriteLine("Owner Name       : " + ownerName);
+        Console.WriteLine("Vehicle Type     : " + vehicleType);
+        Console.WriteLine("Registration Fee : ₹" + registrationFee);
+    }
+
+    // Static(Class) Method
+    public static void UpdateRegistrationFee(double newFee)
+    {
+        registrationFee = newFee;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        //Course c1 = new Course("C#", 6, 25000);
+        //Course c2 = new Course("Java", 8, 30000);
+
+        //c1.DisplayCourseDetails();
+        //c2.DisplayCourseDetails();
+
+        //Console.WriteLine("\nUpdating Institute Name...\n");
+
+        //Course.UpdateInstituteName("Bridgelabz Academy");
+
+        //c1.DisplayCourseDetails();
+        //c2.DisplayCourseDetails();
+        Vehicle v1 = new Vehicle("Kashish", "Car");
+        Vehicle v2 = new Vehicle("Rahul", "Bike");
+
+        v1.DisplayVehicleDetails();
+        v2.DisplayVehicleDetails();
+
+        Console.WriteLine("\nUpdating Registration Fee...\n");
+
+        Vehicle.UpdateRegistrationFee(2500);
+
+        v1.DisplayVehicleDetails();
+        v2.DisplayVehicleDetails();
+    }
+}
