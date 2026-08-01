@@ -1,0 +1,142 @@
+using System;
+
+class BankAccount
+{
+    // Static Variable
+    public static string BankName = "State Bank of India";
+    private static int totalAccounts = 0;
+
+    // Instance Variables
+    public string AccountHolderName;
+    public readonly int AccountNumber;
+
+    // Constructor
+    public BankAccount(string accountHolderName, int accountNumber)
+    {
+        this.AccountHolderName = accountHolderName;
+        this.AccountNumber = accountNumber;
+
+        totalAccounts++;
+    }
+
+    // Instance Method
+    public void DisplayDetails()
+    {
+        Console.WriteLine("\n----- Account Details -----");
+        Console.WriteLine("Bank Name : " + BankName);
+        Console.WriteLine("Holder Name : " + AccountHolderName);
+        Console.WriteLine("Account Number : " + AccountNumber);
+    }
+
+    // Static Method
+    public static void GetTotalAccounts()
+    {
+        Console.WriteLine("\nTotal Accounts = " + totalAccounts);
+    }
+
+
+    class Book
+    {
+        // Static Variable
+        public static string LibraryName = "Central Library";
+
+        // Instance Variables
+        public string Title;
+        public string Author;
+        public readonly string ISBN;
+
+        // Constructor
+        public Book(string title, string author, string isbn)
+        {
+            this.Title = title;
+            this.Author = author;
+            this.ISBN = isbn;
+        }
+
+        // Instance Method
+        public void DisplayBook()
+        {
+            Console.WriteLine("\n----- Book Details -----");
+            Console.WriteLine("Library : " + LibraryName);
+            Console.WriteLine("Title : " + Title);
+            Console.WriteLine("Author : " + Author);
+            Console.WriteLine("ISBN : " + ISBN);
+        }
+
+        // Static Method
+        public static void DisplayLibraryName()
+        {
+            Console.WriteLine("Library Name : " + LibraryName);
+        }
+    }
+
+    class Employee
+    {
+        // Static Variable
+        public static string CompanyName = "Microsoft";
+        private static int totalEmployees = 0;
+
+        // Instance Variables
+        public string Name;
+        public readonly int Id;
+        public string Designation;
+
+        // Constructor
+        public Employee(string name, int id, string designation)
+        {
+            this.Name = name;
+            this.Id = id;
+            this.Designation = designation;
+
+            totalEmployees++;
+        }
+
+        // Instance Method
+        public void DisplayEmployee()
+        {
+            Console.WriteLine("\n----- Employee Details -----");
+            Console.WriteLine("Company : " + CompanyName);
+            Console.WriteLine("Name : " + Name);
+            Console.WriteLine("ID : " + Id);
+            Console.WriteLine("Designation : " + Designation);
+        }
+
+        // Static Method
+        public static void DisplayTotalEmployees()
+        {
+            Console.WriteLine("\nTotal Employees : " + totalEmployees);
+        }
+    }
+
+    class Program
+    {
+        static void Main()
+        {
+            //BankAccount acc1 = new BankAccount("Kashish", 1001);
+            //BankAccount acc2 = new BankAccount("Rahul", 1002);
+
+            //if (acc1 is BankAccount)
+            //{
+            //    acc1.DisplayDetails();
+            //}
+
+            //if (acc2 is BankAccount)
+            //{
+            //    acc2.DisplayDetails();
+            //}
+
+            //BankAccount.GetTotalAccounts();
+
+            Employee e1 = new Employee("Kashish", 101, "Software Engineer");
+            Employee e2 = new Employee("Rahul", 102, "Tester");
+
+            if (e1 is Employee)
+                e1.DisplayEmployee();
+
+            if (e2 is Employee)
+                e2.DisplayEmployee();
+
+            Employee.DisplayTotalEmployees();
+        }
+    }
+}
