@@ -1,0 +1,96 @@
+using System;
+using System.Collections.Generic;
+
+class Course
+{
+    public string CourseName;
+    public List<Student> Students = new List<Student>();
+
+    public Course(string courseName)
+    {
+        CourseName = courseName;
+    }
+
+    public void AddStudent(Student student)
+    {
+        Students.Add(student);
+    }
+
+    public void DisplayStudents()
+    {
+        Console.WriteLine($"\nStudents enrolled in {CourseName}:");
+        foreach (Student student in Students)
+        {
+            Console.WriteLine(student.Name);
+        }
+    }
+}
+
+class Student
+{
+    public string Name;
+    public List<Course> Courses = new List<Course>();
+
+    public Student(string name)
+    {
+        Name = name;
+    }
+
+    public void EnrollCourse(Course course)
+    {
+        Courses.Add(course);
+        course.AddStudent(this);
+    }
+
+    public void DisplayCourses()
+    {
+        Console.WriteLine($"\n{Name}'s Courses:");
+        foreach (Course course in Courses)
+        {
+            Console.WriteLine(course.CourseName);
+        }
+    }
+}
+
+class School
+{
+    public string SchoolName;
+    public List<Student> Students = new List<Student>();   // Aggregation
+
+    public School(string schoolName)
+    {
+        SchoolName = schoolName;
+    }
+
+    public void AddStudent(Student student)
+    {
+        Students.Add(student);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        School school = new School("ABC School");
+
+        Student s1 = new Student("John");
+        Student s2 = new Student("Alice");
+
+        Course c1 = new Course("Maths");
+        Course c2 = new Course("Science");
+
+        school.AddStudent(s1);
+        school.AddStudent(s2);
+
+        s1.EnrollCourse(c1);
+        s1.EnrollCourse(c2);
+        s2.EnrollCourse(c1);
+
+        s1.DisplayCourses();
+        s2.DisplayCourses();
+
+        c1.DisplayStudents();
+        c2.DisplayStudents();
+    }
+}
