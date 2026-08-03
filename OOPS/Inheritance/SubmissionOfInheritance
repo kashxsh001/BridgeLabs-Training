@@ -1,0 +1,196 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace OOPSPractice.Assignments
+{
+    //class Animal
+    //{
+    //    public string name { get; set; }
+    //    public int age { get; set; }
+
+    //    public void MakeSound()
+    //    {
+    //        Console.WriteLine("Animal make a sound");
+    //    }
+    //}
+
+    //class Dog : Animal
+    //{
+    //    public void MakeSound()
+    //    {
+    //        Console.WriteLine("Dog barks");
+    //    }
+    //}
+
+    //class Cat : Animal
+    //{
+    //    public void MakeSound()
+    //    {
+    //        Console.WriteLine("Cat meows");
+    //    }
+    //}
+
+    //class Bird : Animal
+    //{
+    //    public void MakeSound()
+    //    {
+    //        Console.WriteLine("Bird chirps");
+    //    }
+    //}
+
+    class Employee
+    {
+        public required string Name {  get; set; }
+        public int Id {  get; set; }
+        public int Sal {  get; set; }
+
+        public virtual void DisplayDetails()
+        {
+            Console.WriteLine($"Id of {Name} is {Id} and salary is {Sal}");
+        }
+
+    }
+    class Manager : Employee
+    {
+        public int TeamSize {  get; set; }
+        public override void DisplayDetails()
+        {
+            Console.WriteLine($"Id of {Name} is {Id} and salary is {Sal} and the team size is {TeamSize}");
+        }
+
+    }
+    class Developer : Employee
+    {
+        public string ProgrammingLanguage { get; set; }
+        public new void DisplayDetails()
+        {
+            Console.WriteLine($"Id of {Name} is {Id} and salary is {Sal} and the programming anguage is {ProgrammingLanguage}");
+        }
+
+
+    }
+    class Intern : Employee
+    {
+        public string InternshipDuration { get; set; }
+        public void DisplayDetails()
+        {
+            Console.WriteLine($"Id of {Name} is {Id} and salary is {Sal}");
+        }
+
+    }
+
+    class Course
+    {
+        public string CourseName;
+        public int Duration;
+
+        public Course(string courseName, int duration)
+        {
+            CourseName = courseName;
+            Duration = duration;
+        }
+
+        public virtual void DisplayInfo()
+        {
+            Console.WriteLine("Course Name : " + CourseName);
+            Console.WriteLine("Duration : " + Duration + " Months");
+        }
+    }
+
+    class OnlineCourse : Course
+    {
+        public string Platform;
+        public bool IsRecorded;
+
+        public OnlineCourse(string courseName, int duration,
+                            string platform, bool isRecorded)
+            : base(courseName, duration)
+        {
+            Platform = platform;
+            IsRecorded = isRecorded;
+        }
+
+        public override void DisplayInfo()
+        {
+            base.DisplayInfo();
+            Console.WriteLine("Platform : " + Platform);
+            Console.WriteLine("Recorded : " + IsRecorded);
+        }
+    }
+
+    class PaidOnlineCourse : OnlineCourse
+    {
+        public double Fee;
+        public double Discount;
+
+        public PaidOnlineCourse(string courseName,
+                                int duration,
+                                string platform,
+                                bool isRecorded,
+                                double fee,
+                                double discount)
+            : base(courseName, duration, platform, isRecorded)
+        {
+            Fee = fee;
+            Discount = discount;
+        }
+
+        public override void DisplayInfo()
+        {
+            Console.WriteLine("\n----- Course Details -----");
+
+            base.DisplayInfo();
+
+            Console.WriteLine("Fee : ₹" + Fee);
+            Console.WriteLine("Discount : " + Discount + "%");
+
+            double finalFee = Fee - (Fee * Discount / 100);
+
+            Console.WriteLine("Final Fee : ₹" + finalFee);
+        }
+    }
+    class Program
+    {
+
+    static void Main(String[] args)
+        {
+            //Animal animal = new Animal();
+            //animal.MakeSound();
+            //Animal a = new Dog();
+            //a.MakeSound();
+            //Dog d = new Dog();
+            //d.MakeSound();
+            //d.name = "Coco";
+
+            //Employee e = new Employee
+            //{
+            //    Name = "Kashish",
+            //    Id = 1,
+            //    Sal = 200000
+            //};
+
+            //e.DisplayDetails();
+            //Manager m = new Manager
+            //{
+            //    Name = "Rahul",
+            //    Id = 2,
+            //    Sal= 300000,
+            //    TeamSize=5
+            //};
+            //m.DisplayDetails();
+            //PaidOnlineCourse course = new PaidOnlineCourse(
+            //  "C# Programming",
+            //  6,
+            //  "Udemy",
+            //  true,
+            //  5000,
+            //  20);
+
+            //course.DisplayInfo();
+
+
+        }
+    }
+}
+
