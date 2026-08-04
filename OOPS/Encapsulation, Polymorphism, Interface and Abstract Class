@@ -1,0 +1,293 @@
+using System;
+using System.Collections.Generic;
+
+interface ITaxable
+{
+    double CalculateTax();
+    void GetTaxDetails();
+}
+
+abstract class Product
+{
+    private int productId;
+    private string name;
+    private double price;
+
+    public Product(int id, string name, double price)
+    {
+        productId = id;
+        this.name = name;
+        this.price = price;
+    }
+
+    public string Name => name;
+    public double Price => price;
+
+    public void SetPrice(double price)
+    {
+        if (price > 0)
+            this.price = price;
+    }
+
+    public abstract double CalculateDiscount();
+}
+
+class Electronics : Product, ITaxable
+{
+    public Electronics(int id, string name, double price)
+        : base(id, name, price) { }
+
+    public override double CalculateDiscount() => Price * 0.10;
+
+    public double CalculateTax() => Price * 0.18;
+
+    public void GetTaxDetails()
+    {
+        Console.WriteLine("GST = 18%");
+    }
+}
+
+class Clothing : Product, ITaxable
+{
+    public Clothing(int id, string name, double price)
+        : base(id, name, price) { }
+
+    public override double CalculateDiscount() => Price * 0.20;
+
+    public double CalculateTax() => Price * 0.05;
+
+    public void GetTaxDetails()
+    {
+        Console.WriteLine("GST = 5%");
+    }
+}
+
+class Groceries : Product
+{
+    public Groceries(int id, string name, double price)
+        : base(id, name, price) { }
+
+    public override double CalculateDiscount() => Price * 0.05;
+}
+
+interface IInsurable
+{
+    double CalculateInsurance();
+    void GetInsuranceDetails();
+}
+
+abstract class Vehicle
+{
+    private string vehicleNumber;
+    public string Type;
+    public double RentalRate;
+
+    protected Vehicle(string number,string type,double rate)
+    {
+        vehicleNumber=number;
+        Type=type;
+        RentalRate=rate;
+    }
+
+    public string VehicleNumber => vehicleNumber;
+
+    public abstract double CalculateRentalCost(int days);
+}
+
+class Car:Vehicle,IInsurable
+{
+    public Car(string no):base(no,"Car",1000){}
+
+    public override double CalculateRentalCost(int days)=>days*RentalRate;
+
+    public double CalculateInsurance()=>500;
+
+    public void GetInsuranceDetails()=>Console.WriteLine("Car Insurance = 500");
+}
+
+class Bike:Vehicle,IInsurable
+{
+    public Bike(string no):base(no,"Bike",500){}
+
+    public override double CalculateRentalCost(int days)=>days*RentalRate;
+
+    public double CalculateInsurance()=>200;
+
+    public void GetInsuranceDetails()=>Console.WriteLine("Bike Insurance = 200");
+}
+
+class Truck:Vehicle,IInsurable
+{
+    public Truck(string no):base(no,"Truck",3000){}
+
+    public override double CalculateRentalCost(int days)=>days*RentalRate;
+
+    public double CalculateInsurance()=>1000;
+
+    public void GetInsuranceDetails()=>Console.WriteLine("Truck Insurance = 1000");
+}
+
+interface ILoanable
+{
+    void ApplyForLoan();
+    bool CalculateLoanEligibility();
+}
+
+abstract class BankAccount
+{
+    private string accountNumber;
+
+    public string HolderName;
+    public double Balance;
+
+    protected BankAccount(string acc,string holder,double balance)
+    {
+        accountNumber=acc;
+        HolderName=holder;
+        Balance=balance;
+    }
+
+    public void Deposit(double amount)=>Balance+=amount;
+
+    public void Withdraw(double amount)
+    {
+        if(amount<=Balance)
+            Balance-=amount;
+    }
+
+    public abstract double CalculateInterest();
+}
+
+class SavingsAccount:BankAccount,ILoanable
+{
+    public SavingsAccount(string a,string h,double b):base(a,h,b){}
+
+    public override double CalculateInterest()=>Balance*0.06;
+
+    public void ApplyForLoan()=>Console.WriteLine("Loan Applied");
+
+    public bool CalculateLoanEligibility()=>Balance>50000;
+}
+
+class CurrentAccount:BankAccount,ILoanable
+{
+    public CurrentAccount(string a,string h,double b):base(a,h,b){}
+
+    public override double CalculateInterest()=>Balance*0.03;
+
+    public void ApplyForLoan()=>Console.WriteLine("Loan Applied");
+
+    public bool CalculateLoanEligibility()=>Balance>100000;
+}
+interface IReservable
+{
+    void ReserveItem();
+    bool CheckAvailability();
+}
+
+abstract class LibraryItem
+{
+    protected int itemId;
+    protected string title;
+    protected string author;
+
+    protected LibraryItem(int id,string title,string author)
+    {
+        itemId=id;
+        this.title=title;
+        this.author=author;
+    }
+
+    public void GetItemDetails()
+    {
+        Console.WriteLine($"{title} by {author}");
+    }
+
+    public abstract int GetLoanDuration();
+}
+
+class Book:LibraryItem,IReservable
+{
+    public Book(int id,string t,string a):base(id,t,a){}
+
+    public override int GetLoanDuration()=>14;
+
+    public void ReserveItem()=>Console.WriteLine("Book Reserved");
+
+    public bool CheckAvailability()=>true;
+}
+
+class Magazine:LibraryItem,IReservable
+{
+    public Magazine(int id,string t,string a):base(id,t,a){}
+
+    public override int GetLoanDuration()=>7;
+
+    public void ReserveItem()=>Console.WriteLine("Magazine Reserved");
+
+    public bool CheckAvailability()=>true;
+}
+
+class DVD:LibraryItem,IReservable
+{
+    public DVD(int id,string t,string a):base(id,t,a){}
+
+    public override int GetLoanDuration()=>3;
+
+    public void ReserveItem()=>Console.WriteLine("DVD Reserved");
+
+    public bool CheckAvailability()=>false;
+}
+
+class Program
+{
+    static void Main()
+    {
+        List<Product> products = new List<Product>()
+        {
+            new Electronics(1,"Laptop",50000),
+            new Clothing(2,"Shirt",1500),
+            new Groceries(3,"Rice",1000)
+        };
+
+        foreach(Product p in products)
+        {
+            double tax = 0;
+
+            if(p is ITaxable t)
+            {
+                tax = t.CalculateTax();
+                t.GetTaxDetails();
+            }
+
+            double finalPrice = p.Price + tax - p.CalculateDiscount();
+
+            Console.WriteLine($"{p.Name} Final Price = {finalPrice}");
+
+List<LibraryItem> items=new()
+        {
+            new Book(1,"C#","Author A"),
+            new Magazine(2,"Tech Today","Author B"),
+            new DVD(3,"Avatar","James")
+        };
+
+        foreach(LibraryItem item in items)
+        {
+            item.GetItemDetails();
+            Console.WriteLine("Loan Duration = "+item.GetLoanDuration()+" days");
+        }
+
+ List<BankAccount> accounts=new()
+        {
+            new SavingsAccount("101","Kashish",60000),
+            new CurrentAccount("102","Rahul",150000)
+        };
+
+        foreach(BankAccount a in accounts)
+        {
+            Console.WriteLine(a.HolderName);
+            Console.WriteLine("Interest = "+a.CalculateInterest());
+        }
+        }
+    }
+}
