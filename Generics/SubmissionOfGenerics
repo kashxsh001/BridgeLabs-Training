@@ -1,0 +1,290 @@
+using System;
+using System.Collections.Generic;
+
+// ============================================================
+// 1. SMART WAREHOUSE MANAGEMENT SYSTEM
+// ============================================================
+
+// Abstract base class
+abstract class WarehouseItem
+{
+    public string Name { get; set; }
+
+    public WarehouseItem(string name)
+    {
+        Name = name;
+    }
+
+    public abstract void Display();
+}
+
+// Derived classes
+class Electronics : WarehouseItem
+{
+    public Electronics(string name) : base(name) { }
+
+    public override void Display()
+    {
+        Console.WriteLine("Electronics: " + Name);
+    }
+}
+
+class Groceries : WarehouseItem
+{
+    public Groceries(string name) : base(name) { }
+
+    public override void Display()
+    {
+        Console.WriteLine("Groceries: " + Name);
+    }
+}
+
+class Furniture : WarehouseItem
+{
+    public Furniture(string name) : base(name) { }
+
+    public override void Display()
+    {
+        Console.WriteLine("Furniture: " + Name);
+    }
+}
+
+// Generic class with constraint
+class Storage<T> where T : WarehouseItem
+{
+    private List<T> items = new List<T>();
+
+    public void AddItem(T item)
+    {
+        items.Add(item);
+    }
+
+    public void DisplayItems()
+    {
+        foreach (T item in items)
+        {
+            item.Display();
+        }
+    }
+}
+
+
+// ============================================================
+// 2. DYNAMIC ONLINE MARKETPLACE
+// ============================================================
+
+// Categories
+class BookCategory
+{
+    public string CategoryName { get; set; }
+
+    public BookCategory(string name)
+    {
+        CategoryName = name;
+    }
+}
+
+class ClothingCategory
+{
+    public string CategoryName { get; set; }
+
+    public ClothingCategory(string name)
+    {
+        CategoryName = name;
+    }
+}
+
+// Generic Product class
+class Product<T>
+{
+    public string Name { get; set; }
+    public double Price { get; set; }
+    public T Category { get; set; }
+
+    public Product(string name, double price, T category)
+    {
+        Name = name;
+        Price = price;
+        Category = category;
+    }
+
+    public void Display()
+    {
+        Console.WriteLine(
+            $"Product: {Name}, Price: {Price}, Category: {Category.GetType().Name}"
+        );
+    }
+}
+
+// Generic method
+class Marketplace
+{
+    public static void ApplyDiscount<T>(
+        Product<T> product,
+        double percentage)
+    {
+        double discount = product.Price * percentage / 100;
+        product.Price -= discount;
+
+        Console.WriteLine(
+            $"Discount: {percentage}% | New Price: {product.Price}"
+        );
+    }
+}
+
+
+// ============================================================
+// 3. MULTI-LEVEL UNIVERSITY COURSE MANAGEMENT SYSTEM
+// ============================================================
+
+// Abstract course type
+abstract class CourseType
+{
+    public string CourseName { get; set; }
+
+    public CourseType(string courseName)
+    {
+        CourseName = courseName;
+    }
+
+    public abstract void Display();
+}
+
+// Different evaluation types
+class ExamCourse : CourseType
+{
+    public ExamCourse(string courseName) : base(courseName) { }
+
+    public override void Display()
+    {
+        Console.WriteLine(
+            "Exam Course: " + CourseName
+        );
+    }
+}
+
+class AssignmentCourse : CourseType
+{
+    public AssignmentCourse(string courseName) : base(courseName) { }
+
+    public override void Display()
+    {
+        Console.WriteLine(
+            "Assignment Course: " + CourseName
+        );
+    }
+}
+
+// Generic Course class with constraint
+class Course<T> where T : CourseType
+{
+    private List<T> courses = new List<T>();
+
+    public void AddCourse(T course)
+    {
+        courses.Add(course);
+    }
+
+    public void DisplayCourses()
+    {
+        foreach (T course in courses)
+        {
+            course.Display();
+        }
+    }
+}
+
+
+// ============================================================
+// MAIN CLASS
+// ============================================================
+
+class Program
+{
+    static void Main()
+    {
+        // ----------------------------------------------------
+        // 1. SMART WAREHOUSE
+        // ----------------------------------------------------
+
+        Console.WriteLine("===== SMART WAREHOUSE =====");
+
+        Storage<Electronics> electronicsStorage =
+            new Storage<Electronics>();
+
+        electronicsStorage.AddItem(
+            new Electronics("Laptop"));
+
+        electronicsStorage.AddItem(
+            new Electronics("Mobile"));
+
+        electronicsStorage.DisplayItems();
+
+        Storage<Groceries> groceryStorage =
+            new Storage<Groceries>();
+
+        groceryStorage.AddItem(
+            new Groceries("Rice"));
+
+        groceryStorage.AddItem(
+            new Groceries("Milk"));
+
+        groceryStorage.DisplayItems();
+
+
+        // ----------------------------------------------------
+        // 2. ONLINE MARKETPLACE
+        // ----------------------------------------------------
+
+        Console.WriteLine("\n===== ONLINE MARKETPLACE =====");
+
+        Product<BookCategory> book =
+            new Product<BookCategory>(
+                "C# Programming",
+                1000,
+                new BookCategory("Programming"));
+
+        book.Display();
+
+        Marketplace.ApplyDiscount(book, 10);
+
+        Product<ClothingCategory> clothes =
+            new Product<ClothingCategory>(
+                "T-Shirt",
+                800,
+                new ClothingCategory("Men"));
+
+        clothes.Display();
+
+        Marketplace.ApplyDiscount(clothes, 20);
+
+
+        // ----------------------------------------------------
+        // 3. UNIVERSITY COURSE MANAGEMENT
+        // ----------------------------------------------------
+
+        Console.WriteLine("\n===== UNIVERSITY COURSES =====");
+
+        Course<ExamCourse> examCourses =
+            new Course<ExamCourse>();
+
+        examCourses.AddCourse(
+            new ExamCourse("Data Structures"));
+
+        examCourses.AddCourse(
+            new ExamCourse("Operating Systems"));
+
+        examCourses.DisplayCourses();
+
+        Course<AssignmentCourse> assignmentCourses =
+            new Course<AssignmentCourse>();
+
+        assignmentCourses.AddCourse(
+            new AssignmentCourse("Software Engineering"));
+
+        assignmentCourses.AddCourse(
+            new AssignmentCourse("Web Development"));
+
+        assignmentCourses.DisplayCourses();
+    }
+}
