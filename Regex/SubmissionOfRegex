@@ -1,0 +1,156 @@
+using System;
+using System.Text.RegularExpressions;
+
+class Program
+{
+    // 1. Validate Username
+    static void ValidateUsername(string username)
+    {
+        string pattern = @"^[A-Za-z][A-Za-z0-9_]{4,14}$";
+
+        if (Regex.IsMatch(username, pattern))
+            Console.WriteLine("Valid");
+        else
+            Console.WriteLine("Invalid");
+    }
+
+    // 2. Validate License Plate
+    static void ValidateLicensePlate(string plate)
+    {
+        string pattern = @"^[A-Z]{2}[0-9]{4}$";
+
+        if (Regex.IsMatch(plate, pattern))
+            Console.WriteLine("Valid");
+        else
+            Console.WriteLine("Invalid");
+    }
+
+    // 3. Validate Hex Color Code
+    static void ValidateHexColor(string color)
+    {
+        string pattern = @"^#[A-Fa-f0-9]{6}$";
+
+        if (Regex.IsMatch(color, pattern))
+            Console.WriteLine("Valid");
+        else
+            Console.WriteLine("Invalid");
+    }
+
+    // 4. Extract Email Addresses
+    static void ExtractEmails(string text)
+    {
+        string pattern = @"[\w.-]+@[\w.-]+\.[A-Za-z]{2,}";
+
+        MatchCollection matches = Regex.Matches(text, pattern);
+
+        foreach (Match match in matches)
+            Console.WriteLine(match.Value);
+    }
+
+    // 5. Extract Capitalized Words
+    static void ExtractCapitalizedWords(string text)
+    {
+        string pattern = @"\b[A-Z][a-z]*\b";
+
+        MatchCollection matches = Regex.Matches(text, pattern);
+
+        foreach (Match match in matches)
+            Console.Write(match.Value + " ");
+        
+        Console.WriteLine();
+    }
+
+    // 6. Extract Dates
+    static void ExtractDates(string text)
+    {
+        string pattern = @"\b\d{2}/\d{2}/\d{4}\b";
+
+        MatchCollection matches = Regex.Matches(text, pattern);
+
+        foreach (Match match in matches)
+            Console.Write(match.Value + " ");
+
+        Console.WriteLine();
+    }
+
+    // 7. Extract Links
+    static void ExtractLinks(string text)
+    {
+        string pattern = @"https?://[^\s]+";
+
+        MatchCollection matches = Regex.Matches(text, pattern);
+
+        foreach (Match match in matches)
+            Console.WriteLine(match.Value);
+    }
+
+    // 8. Replace Multiple Spaces
+    static void ReplaceMultipleSpaces(string text)
+    {
+        string result = Regex.Replace(text, @"\s+", " ");
+
+        Console.WriteLine(result);
+    }
+
+    // 9. Censor Bad Words
+    static void CensorBadWords(string text)
+    {
+        string[] badWords = { "damn", "stupid" };
+
+        foreach (string word in badWords)
+        {
+            string pattern = @"\b" + Regex.Escape(word) + @"\b";
+
+            text = Regex.Replace(
+                text,
+                pattern,
+                "****",
+                RegexOptions.IgnoreCase
+            );
+        }
+
+        Console.WriteLine(text);
+    }
+
+    static void Main()
+    {
+        // 1
+        ValidateUsername("user_123");
+
+        // 2
+        ValidateLicensePlate("AB1234");
+
+        // 3
+        ValidateHexColor("#FFA500");
+
+        // 4
+        ExtractEmails(
+            "Contact us at support@example.com and info@company.org"
+        );
+
+        // 5
+        ExtractCapitalizedWords(
+            "The Eiffel Tower is in Paris and the Statue of Liberty is in New York."
+        );
+
+        // 6
+        ExtractDates(
+            "The events are scheduled for 12/05/2023, 15/08/2024, and 29/02/2020."
+        );
+
+        // 7
+        ExtractLinks(
+            "Visit https://www.google.com and http://example.org for more info."
+        );
+
+        // 8
+        ReplaceMultipleSpaces(
+            "This  is   an example    with multiple     spaces."
+        );
+
+        // 9
+        CensorBadWords(
+            "This is a damn bad example with some stupid words."
+        );
+    }
+}
