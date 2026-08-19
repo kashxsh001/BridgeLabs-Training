@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="SequencePatternMatcher/SequencePatternMatcher.csproj" />
+  <Project Path="TestProject1/TestProject1.csproj" Id="c1d7890e-02e7-4716-840b-af66a7a6253c" />
+</Solution>
