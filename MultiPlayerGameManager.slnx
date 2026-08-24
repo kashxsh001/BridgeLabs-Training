@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="GameManagerTestProj/GameManagerTestProj.csproj" Id="7c0ee3fd-56de-46e3-8668-c0abbee3baaa" />
+  <Project Path="MultiPlayerGameManager/MultiPlayerGameManager.csproj" />
+</Solution>
