@@ -6,6 +6,7 @@ namespace HospitalPatientRouting
     {
         public static void Main()
         {
+            //
             string baseDirectory =AppContext.BaseDirectory;
 
             string csvPath =Path.Combine(baseDirectory,"Data","patients.csv");

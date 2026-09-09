@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HospitalPatientRouting.Exceptions
 {
-    internal class InvalidAgeException :PatientException
+    public class InvalidAgeException :PatientException
     {
         public InvalidAgeException(int age): base($"Invalid {age}. Age must be between 1 and 120.")
         { }
