@@ -1,0 +1,2 @@
+CRITICAL ALERT | PatientId=P1 | Severity=9 | Department=Cardiology
+CRITICAL ALERT | PatientId=P5 | Severity=8 | Department=Orthopedics

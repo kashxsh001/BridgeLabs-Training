@@ -1,0 +1,20 @@
+﻿{
+  "symptomRouting": [
+    {
+      "symptom": "chest_pain",
+      "department": "Cardiology"
+    },
+    {
+      "symptom": "fever",
+      "department": "General Medicine"
+    },
+    {
+      "symptom": "headache",
+      "department": "Neurology"
+    },
+    {
+      "symptom": "fracture",
+      "department": "Orthopedics"
+    }
+  ]
+}

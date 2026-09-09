@@ -1,0 +1,7 @@
+﻿PatientId,Name,Age,Symptom,Severity
+P1,Rohan,34,chest_pain,9
+P2,Simran,28,fever,4
+P3,Arjun,150,headache,3
+P4,Kavya,45,unknown_symptom,7
+P5,Manoj,60,fracture,8
+P6,Isha,5,fever,6
