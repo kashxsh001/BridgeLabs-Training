@@ -4,6 +4,7 @@ using System.Text;
 
 namespace OnlineStoreOrder
 {
+    [HandlingRequirement("Fragile")]
     internal class FragileItem : OrderItem
     {
         public FragileItem(string name, decimal price) : base(name, price)

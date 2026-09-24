@@ -41,13 +41,13 @@ namespace OnlineStoreOrder
         {
             if (_disposed) return;
             _disposed = true;
-
+            //GC.SuppressFinalize(this);
 
         }
 
-        ~ManifestExporter()
-        {
-            Dispose();
-        }
+        //~ManifestExporter()
+        //{
+        //    Dispose();
+        //}
     }
 }

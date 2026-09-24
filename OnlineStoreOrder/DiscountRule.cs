@@ -6,7 +6,7 @@ namespace OnlineStoreOrder
 {
     internal class DiscountRule
     {
-        public Func<Order,decimal> CreateDiscountRule(decimal minSpend, decimal discountPercent)
+        public static Func<Order,decimal> CreateDiscountRule(decimal minSpend, decimal discountPercent)
         {
             return order =>
             {
